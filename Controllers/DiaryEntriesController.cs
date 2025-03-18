@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebDiaryAPI.Data;
 using WebDiaryAPI.Models;
 
@@ -15,8 +16,8 @@ namespace WebDiaryAPI.Controllers
             _context = context;
         }
         [HttpGet]
-        public IEnumerable<DiaryEntry> GetEntries() { 
-            return _context.DiaryEntries.ToList(); 
+        public async Task<ActionResult<IEnumerable<DiaryEntry>>> GetDiaryEntries() { 
+            return await _context.DiaryEntries.ToListAsync(); 
         }
     }
 }
